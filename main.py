@@ -4,6 +4,8 @@ def print_menu():
     print("-------------")
     print("1. Encode\n2. Decode\n3. Quit ")
     print()
+
+
 def password_encoder(password):
     encoded = ""
     pass_as_char = str(password)
@@ -14,9 +16,17 @@ def password_encoder(password):
     return encoded
 
 
+def decode(encoded_password):
+    integers = [int(integer) for integer in encoded_password]
+    decoded_integer = [(integer - 3) for integer in integers]
+    decoded_password = "".join(str(integer) for integer in decoded_integer)
+    return decoded_password
+
+
 # This is the main function
 if __name__ == "__main__":
     running = True
+    decoded_password = None
     while running:
         print_menu()
         user_input = int(input("Please enter an option: "))
@@ -26,6 +36,7 @@ if __name__ == "__main__":
             print("Your password has been encoded and stored!")
             print(encoded_password)
         elif user_input == 2:
-            pass
+            decoded_password = decode(str(encoded_password))
+            print(f'The encoded password is {encoded_password}, and the original password is {decoded_password}.')
         else:
             pass
